@@ -2,8 +2,11 @@ package com.company;
 
 import com.company.business.abstracts.ProductService;
 import com.company.business.concretes.ProductManager;
+import com.company.core.jLoggerManagerAdapter;
+import com.company.dataAccess.concretes.AbcProductDao;
 import com.company.dataAccess.concretes.HibernateProductDao;
 import com.company.entities.concretes.Product;
+import com.company.jLogger.jLoggerManager;
 
 
 public class Main {
@@ -14,8 +17,9 @@ public class Main {
 
 
         //Todo : Spring Ioc ile çözülecek
-        ProductService productService = new ProductManager(new HibernateProductDao());
+        ProductService productService = new ProductManager(new AbcProductDao(),new jLoggerManagerAdapter());
         productService.add(product1);
+
 
 
     }

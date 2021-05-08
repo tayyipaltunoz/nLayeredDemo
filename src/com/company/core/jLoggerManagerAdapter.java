@@ -1,0 +1,11 @@
+package com.company.core;
+
+import com.company.jLogger.jLoggerManager;
+
+public class jLoggerManagerAdapter implements LoggerService{
+    @Override
+    public void logToSystem(String message) {
+        jLoggerManager manager = new jLoggerManager();
+        manager.log(message);
+    }
+}

@@ -1,6 +1,7 @@
 package com.company.business.concretes;
 
 import com.company.business.abstracts.ProductService;
+import com.company.core.LoggerService;
 import com.company.dataAccess.abstracts.ProductDao;
 import com.company.dataAccess.concretes.HibernateProductDao;
 import com.company.entities.concretes.Product;
@@ -10,9 +11,11 @@ import java.util.List;
 public class ProductManager implements ProductService {
 
     private ProductDao productDao;
+    private LoggerService loggerService;
 
-    public ProductManager(ProductDao productDao) {
+    public ProductManager(ProductDao productDao, LoggerService loggerService) {
         this.productDao = productDao;
+        this.loggerService = loggerService;
     }
 
     @Override
@@ -22,6 +25,7 @@ public class ProductManager implements ProductService {
             return;
         }
         this.productDao.add(product);
+        this.loggerService.logToSystem("Ürün eklendi " + product.getName());
 
     }
 
